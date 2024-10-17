@@ -59,18 +59,39 @@ p {
   margin-bottom: 10px;
 }
 
-.input input {
+.input input, .input select {
   width: 100%;
   padding: 10px;
   border: 1.5px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
   transition: border-color 0.3s ease;
+  font-family: inherit;
 }
 
-.input input:focus {
+.input input:focus, .input select:focus {
   border-color: #7f3aff;
   outline: none;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '\25BC'; /* Dropdown arrow */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #888;
+}
+
+select {
+  appearance: none;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 button#calculate {
@@ -92,6 +113,14 @@ button#calculate:hover {
 
 .result {
   padding: 30px 20px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.result.show {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .result p {
@@ -122,4 +151,58 @@ button#calculate:hover {
 
 #comment:hover {
   color: #7f3aff;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .box {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .result #result {
+    font-size: 32px;
+  }
+
+  .result p {
+    font-size: 18px;
+  }
+
+  button#calculate {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .box {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .result #result {
+    font-size: 28px;
+  }
+
+  .result p {
+    font-size: 16px;
+  }
+
+  button#calculate {
+    font-size: 12px;
+  }
 }
